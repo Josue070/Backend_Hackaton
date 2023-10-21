@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "usuarios",
+  "info": {
+    "singularName": "usuario",
+    "pluralName": "usuarios",
+    "displayName": "Tabla_general",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "id_general": {
+      "type": "uid"
+    },
+    "Nombre": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Password": {
+      "type": "password"
+    },
+    "rol": {
+      "type": "string"
+    },
+    "Nombretipo": {
+      "type": "string"
+    },
+    "comentarios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comentario.comentario",
+      "mappedBy": "tabla_general"
+    },
+    "eventos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::evento.evento",
+      "mappedBy": "tabla_generals"
+    }
+  }
+}

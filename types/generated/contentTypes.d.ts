@@ -677,6 +677,128 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiComentarioComentario extends Schema.CollectionType {
+  collectionName: 'comentarios';
+  info: {
+    singularName: 'comentario';
+    pluralName: 'comentarios';
+    displayName: 'Comentario';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    id_comentario: Attribute.UID;
+    Comentario: Attribute.Text;
+    publicacion_comentario: Attribute.DateTime;
+    tabla_general: Attribute.Relation<
+      'api::comentario.comentario',
+      'manyToOne',
+      'api::usuario.usuario'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::comentario.comentario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::comentario.comentario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEventoEvento extends Schema.CollectionType {
+  collectionName: 'eventos';
+  info: {
+    singularName: 'evento';
+    pluralName: 'eventos';
+    displayName: 'Evento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    id_evento: Attribute.UID;
+    Nombre: Attribute.String;
+    Descripcion: Attribute.Text;
+    Estado: Attribute.Boolean;
+    tabla_generals: Attribute.Relation<
+      'api::evento.evento',
+      'manyToMany',
+      'api::usuario.usuario'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::evento.evento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::evento.evento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUsuarioUsuario extends Schema.CollectionType {
+  collectionName: 'usuarios';
+  info: {
+    singularName: 'usuario';
+    pluralName: 'usuarios';
+    displayName: 'Tabla_general';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    id_general: Attribute.UID;
+    Nombre: Attribute.String;
+    Email: Attribute.Email;
+    Password: Attribute.Password;
+    rol: Attribute.String;
+    Nombretipo: Attribute.String;
+    comentarios: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToMany',
+      'api::comentario.comentario'
+    >;
+    eventos: Attribute.Relation<
+      'api::usuario.usuario',
+      'manyToMany',
+      'api::evento.evento'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -693,6 +815,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::comentario.comentario': ApiComentarioComentario;
+      'api::evento.evento': ApiEventoEvento;
+      'api::usuario.usuario': ApiUsuarioUsuario;
     }
   }
 }
