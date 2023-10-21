@@ -9,16 +9,14 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.14.5",
-    "@strapi/plugin-users-permissions": "4.14.5",
     "@strapi/plugin-i18n": "4.14.5",
-    "mysql": "2.18.1"
+    "@strapi/plugin-users-permissions": "4.14.5",
+    "@strapi/strapi": "4.14.5",
+    "mysql": "2.18.1",
+    "yarn": "^1.22.19"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
+  "author": " A Strapi developer",
   "strapi": {
     "uuid": "679b0eec-7bfd-4c85-9d3a-9eda4c9781a4"
   },
@@ -26,5 +24,7 @@
     "node": ">=16.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/Josue070/Backend_Hackaton.git"
 }
